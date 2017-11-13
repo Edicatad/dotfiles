@@ -2,8 +2,8 @@
 # Clones git repos or otherwise fetches vim plugins
 
 REPOS=(
-    "https://github.com/sjl/badwolf.git"
     "https://github.com/scrooloose/nerdtree.git" 
+    "https://github.com/sickill/vim-monokai"
     )
 
 cd vim/.vim/bundle
