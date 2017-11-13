@@ -2,5 +2,3 @@
 repos/**
 # track the gitignore in case there are repos I want to store
 !repos/.gitignore
-
-*.un~
