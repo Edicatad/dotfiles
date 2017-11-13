@@ -67,6 +67,7 @@ else
   set backup		" keep a backup file (restore to previous version)
   if has('persistent_undo')
     set undofile	" keep an undo file (undo changes after closing)
+    set undodir=~/.vim/tmp,.
   endif
   set backupdir=~/.vim/tmp,.
   set directory=~/.vim/tmp,.

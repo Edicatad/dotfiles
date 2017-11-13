@@ -1,2 +1,4 @@
 # track the repos folder but not its contents
 repos/**
+
+*.un~
