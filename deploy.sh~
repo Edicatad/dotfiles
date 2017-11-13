@@ -1,9 +1,0 @@
-#!/bin/bash
-# Executes stow commands for git'd dotfiles
-
-PROGRAMS=( "vim" "bash" )
-echo $1
-for i in "${PROGRAMS[@]}"
-do
-    stow -t $HOME $i
-done

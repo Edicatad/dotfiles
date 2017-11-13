@@ -68,8 +68,6 @@ else
   if has('persistent_undo')
     set undofile	" keep an undo file (undo changes after closing)
   endif
-  set backupdir=~/.vim/tmp,.
-  set directory=~/.vim/tmp,.
 endif
 " }}}
 
