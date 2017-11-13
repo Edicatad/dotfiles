@@ -1,14 +1,14 @@
 " Maintainer:	Yri Davies	<0xdavy@gmail.com>
 " Last change:	2017 Jun 26
 
-" Color scheme {{{
-syntax enable		" enable syntax processing
-colorscheme badwolf	" use the molokai colorscheme in ~/.vim/colors/
-" }}}
 " Misc {{{
 set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
 set modelines=1                 " checks the last line of a file for mode changes
 execute pathogen#infect()
+" }}}
+" Color scheme {{{
+syntax enable		" enable syntax processing
+colorscheme badwolf	" use the molokai colorscheme in ~/.vim/colors/
 " }}}
 " Deal with tabs {{{
 set tabstop=4		" tabs are 4 spaces long when reading a file
