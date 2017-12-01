@@ -25,6 +25,9 @@ export EDITOR=vim
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux
 
 # Print a fancy tree in the terminal!
+RED='\033[0;31m'
+WHITE='\033[0;37m'
+
 echo
 echo -e "               ${RED}&&&"
 echo -e "             &&&&&&"
