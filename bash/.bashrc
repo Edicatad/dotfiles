@@ -24,5 +24,4 @@ export EDITOR=vim
 # start in tmux if available
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux
 
-uname -n | figlet
 date
