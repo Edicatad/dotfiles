@@ -24,4 +24,21 @@ export EDITOR=vim
 # start in tmux if available
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux
 
+# Print a fancy tree in the terminal!
+echo
+echo -e "               ${RED}&&&"
+echo -e "             &&&&&&"
+echo -e "          &&&&${WHITE}\\/${RED}&&& &&&"
+echo -e "         &&&${WHITE}|,/   |/${RED}& &&&"
+echo -e "          &&&${WHITE}/   /   /_${RED}&&& &&&${WHITE}"
+echo -e "             \\  {  ,/_____/_${RED}&&  &&${WHITE}"
+echo -e "             {  / /           ${RED}&&${WHITE},${RED}&&${WHITE}"
+echo -e "             \`, \\{==_     ,____/_${RED}&&&&${WHITE}"
+echo -e "               } }/ \`\\___{    ${RED}&${WHITE}\`${RED}&&${WHITE}"
+echo -e "              }{{         \\____${RED}&&&&${WHITE}"
+echo -e "             {}{            \`${RED}&${WHITE}\\\\${RED}&&&${WHITE}"
+echo -e "            }{{               ${RED}&&&${WHITE}"
+echo -e "      , -=-~{ .-^- _"
+echo -e "            \`}"
+echo -e "            {"
 date
