@@ -25,23 +25,23 @@ export EDITOR=vim
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux
 
 # Print a fancy tree in the terminal!
-RED='\033[0;31m'
-WHITE='\033[0;37m'
+LEAFCOLOUR='\033[0;31m'
+BARKCOLOUR='\033[0;37m'
 
 echo
-echo -e "               ${RED}&&&"
+echo -e "               ${LEAFCOLOUR}&&&"
 echo -e "             &&&&&&"
-echo -e "          &&&&${WHITE}\\/${RED}&&& &&&"
-echo -e "         &&&${WHITE}|,/   |/${RED}& &&&"
-echo -e "          &&&${WHITE}/   /   /_${RED}&&& &&&${WHITE}"
-echo -e "             \\  {  ,/_____/_${RED}&&  &&${WHITE}"
-echo -e "             {  / /           ${RED}&&${WHITE},${RED}&&${WHITE}"
-echo -e "             \`, \\{==_     ,____/_${RED}&&&&${WHITE}"
-echo -e "               } }/ \`\\___{    ${RED}&${WHITE}\`${RED}&&${WHITE}"
-echo -e "              }{{         \\____${RED}&&&&${WHITE}"
-echo -e "             {}{            \`${RED}&${WHITE}\\\\${RED}&&&${WHITE}"
-echo -e "            }{{               ${RED}&&&${WHITE}"
+echo -e "          &&&&${BARKCOLOUR}\\/${LEAFCOLOUR}&&& &&&"
+echo -e "         &&&${BARKCOLOUR}|,/   |/${LEAFCOLOUR}& &&&"
+echo -e "          &&&${BARKCOLOUR}/   /   /_${LEAFCOLOUR}&&& &&&${BARKCOLOUR}"
+echo -e "             \\  {  ,/_____/_${LEAFCOLOUR}&&  &&${BARKCOLOUR}"
+echo -e "             {  / /           ${LEAFCOLOUR}&&${BARKCOLOUR},${LEAFCOLOUR}&&${BARKCOLOUR}"
+echo -e "             \`, \\{==_     ,____/_${LEAFCOLOUR}&&&&${BARKCOLOUR}"
+echo -e "               } }/ \`\\___{    ${LEAFCOLOUR}&${BARKCOLOUR}\`${LEAFCOLOUR}&&${BARKCOLOUR}"
+echo -e "              }{{         \\____${LEAFCOLOUR}&&&&${BARKCOLOUR}"
+echo -e "             {}{            \`${LEAFCOLOUR}&${BARKCOLOUR}\\\\${LEAFCOLOUR}&&&${BARKCOLOUR}"
+echo -e "            }{{               ${LEAFCOLOUR}&&&${BARKCOLOUR}"
 echo -e "      , -=-~{ .-^- _"
 echo -e "            \`}"
-echo -e "            {"
+echo -e "            {\033[0m" # this removes the colouring from the rest of the output
 date
