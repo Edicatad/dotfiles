@@ -22,7 +22,6 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
 set number		    " line numbers
-"set relativenumber	" relative line numbers
 set showcmd		    " shows the typed command bottom right
 set cursorline		" highlight current line
 filetype indent on	" opens indentation file based on detected filetype (.c, .py, etc)
@@ -44,9 +43,6 @@ set foldmethod=indent   " fold based on indentation by default
 nnoremap <space> za
 " }}}
 " Movement {{{
-"nnoremap j gj		" These make up/down function visually, so they work on wrapped lines
-"nnoremap k gk
-nnoremap gV `[v`]	" highlight last inserted text
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
 set scrolloff=3     " keep 3 lines visible above and below the cursor at all times
 " }}}
@@ -70,12 +66,12 @@ if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
   set backup		" keep a backup file (restore to previous version)
+  set backupdir=/tmp,.
+  set directory=/tmp,.
   if has('persistent_undo')
     set undofile	" keep an undo file (undo changes after closing)
     set undodir=/tmp,.
   endif
-  set backupdir=/tmp,.
-  set directory=/tmp,.
 endif
 " }}}
 
