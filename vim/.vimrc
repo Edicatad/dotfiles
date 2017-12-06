@@ -44,7 +44,7 @@ nnoremap <space> za
 " }}}
 " Movement {{{
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
-set scrolloff=3     " keep 3 lines visible above and below the cursor at all times
+set scrolloff=15    " keep 15 lines visible above and below the cursor at all times
 " }}}
 " TMUX workarounds {{{
 if exists('$TMUX')  " change cursor mode to vertical bar in TMUX
