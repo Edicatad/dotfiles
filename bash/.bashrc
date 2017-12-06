@@ -1,6 +1,15 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # If not running interactively, don't do anything.   
 [ -z "$PS1" ] && return                                                                                                                                                           
+# Colour settings {{{
+# Colour settings for use in this bash file
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+WHITE='\033[0;37m'
+YELLOW='\033[0;33m'
+NOCOLOUR='\033[00m'
+# }}}
 # History settings {{{
 # don't put duplicate lines in the history or force ignoredups and ignorespace                                                                                                                                 
 HISTCONTROL=ignoredups:ignorespace                                                                                              
@@ -16,13 +25,19 @@ HISTFILESIZE=200000
 shopt -s checkwinsize  
 # }}}
 # Prompt settings {{{
+# Prompt colour settings {{{
+PROMPTROOTCOLOUR="${RED}\]"
+PROMPTUSERCOLOUR="${GREEN}\]"
+PROMPTPATHCOLOUR="${YELLOW}\]"
+PROMPTNOCOLOUR="${NOCOLOUR}\]"
+# }}}
 # Current prompt:
 # [hist][user@host pwd]$ 
 if [ $(id -u) -eq 0 ];
 then # I am root
-    PS1='\e[1;31m\][\e[m\]\!\e[1;31m\]][\[\u@\h \w]\#\[\e[m\] '
+    PS1="${PROMPTROOTCOLOUR}[${PROMPTNOCOLOUR}\!${PROMPTROOTCOLOUR}][\[\u@\h ${PROMPTPATHCOLOUR}\w${PROMPTROOTCOLOUR}]\\$ ${PROMPTNOCOLOUR}"
 else
-    PS1='\e[1;32m\][\e[m\]\!\e[1;32m\]][\[\u@\h \w]\$\[\e[m\] '
+    PS1="${PROMPTUSERCOLOUR}[${PROMPTNOCOLOUR}\!${PROMPTUSERCOLOUR}][\[\u@\h ${PROMPTPATHCOLOUR}\w${PROMPTUSERCOLOUR}]\\$ ${PROMPTNOCOLOUR}"
 fi
 # }}}
 # Editor settings {{{
@@ -35,8 +50,8 @@ export EDITOR=vim
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux
 
 # Print a fancy tree in the terminal!
-LEAFCOLOUR='\033[0;31m'
-BARKCOLOUR='\033[0;37m'
+LEAFCOLOUR=$RED
+BARKCOLOUR=$WHITE
 
 echo
 echo -e "               ${LEAFCOLOUR}&&&"
@@ -53,7 +68,7 @@ echo -e "             {}{            \`${LEAFCOLOUR}&${BARKCOLOUR}\\\\${LEAFCOLO
 echo -e "            }{{               ${LEAFCOLOUR}&&&${BARKCOLOUR}"
 echo -e "      , -=-~{ .-^- _"
 echo -e "            \`}"
-echo -e "            {\033[0m" # this removes the colouring from the rest of the output
+echo -e "            {${NOCOLOUR}" # this removes the colouring from the rest of the output
 date
 # }}}
 
