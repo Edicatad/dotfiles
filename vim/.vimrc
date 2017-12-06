@@ -10,10 +10,15 @@ execute pathogen#infect()
 syntax enable		" enable syntax processing
 colorscheme monokai " use the molokai colorscheme in ~/.vim/colors/
 " }}}
-" Deal with tabs {{{
+" Indentation {{{
+" General indentation rules
 set tabstop=4		" tabs are 4 spaces long when reading a file
 set softtabstop=4	" tabs are 4 spaces long when editing (for backspace)
 set expandtab		" tabs are inserted as spaces for things like bash
+set smarttab        " tab key brings you to the next tabstop multiple rather than hard-inserting four spaces
+set copyindent      " copy indentation from previous line
+" Filetype-specific indentation rules
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
 set number		    " line numbers
