@@ -18,6 +18,7 @@ cd ../../..
 PROGRAMS=(
     "vim"
     "bash" 
+    "tmux"
     )
 
 for i in "${PROGRAMS[@]}"
