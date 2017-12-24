@@ -14,6 +14,7 @@ colorscheme monokai " use the molokai colorscheme in ~/.vim/colors/
 " General indentation rules
 set tabstop=4		" tabs are 4 spaces long when reading a file
 set softtabstop=4	" tabs are 4 spaces long when editing (for backspace)
+set shiftwidth=4    " expanded tabs are 4 spaces long
 set expandtab		" tabs are inserted as spaces for things like bash
 set smarttab        " tab key brings you to the next tabstop multiple rather than hard-inserting four spaces
 set copyindent      " copy indentation from previous line
