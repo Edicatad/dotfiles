@@ -5,6 +5,8 @@ Contains dotfiles and a script to automagically deploy them.  The deploy script 
 - GNU Stow
 - Git
 
-# TODO
-If the repos have already been cloned, the deploy script should try to pull them instead.
-
+# Usage
+```
+git clone http://github.com/Edicatad/dotfiles
+cd dotfiles && ./deploy.sh
+```
