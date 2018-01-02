@@ -8,7 +8,7 @@ execute pathogen#infect()
 " }}}
 " Color scheme {{{
 syntax enable		" enable syntax processing
-colorscheme monokai " use the molokai colorscheme in ~/.vim/colors/
+colorscheme badwolf " use the molokai colorscheme in ~/.vim/colors/
 " }}}
 " Indentation {{{
 " General indentation rules

@@ -3,7 +3,7 @@
 
 REPOS=(
     "https://github.com/scrooloose/nerdtree" 
-    "https://github.com/sickill/vim-monokai"
+    "https://github.com/sjl/badwolf"
     )
 
 echo "Cloning vim plugins from GitHub"
