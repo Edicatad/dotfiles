@@ -38,6 +38,7 @@ PROGRAMS=(
     "vim"
     "bash" 
     "tmux"
+    "mutt"
     )
 
 echo "Arguments supplied for GNU Stow: '-t ${HOME} ${1}'"
@@ -55,3 +56,6 @@ do
         printf  "    %s\n" "$(echo "${OUTPUT}" | sed '2,$s/^/    /g')"
     fi
 done
+
+# Symlink userdata
+ln -siv .dotfiles-userdata ~/.dotfiles-userdata

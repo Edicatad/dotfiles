@@ -45,6 +45,11 @@ fi
 set -o vi
 export EDITOR=vim
 # }}}
+# {{{ Path settings
+if [ -d "$HOME/Dev/platform-tools" ] ; then
+    export PATH="$HOME/Dev/platform-tools:$PATH"
+fi
+# }}}
 # Launch script {{{
 # start in tmux if available
 [ -z $TMUX ] && export TERM=xterm-256color && exec tmux

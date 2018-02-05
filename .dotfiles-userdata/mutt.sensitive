@@ -1,0 +1,11 @@
+# Credentials for fetching email
+set imap_user = ""
+set imap_pass = ""
+
+# Credentials for sending email
+set smtp_url = ""
+set smtp_pass = ""
+
+# Misc data
+set from = ""
+set realname = ""
