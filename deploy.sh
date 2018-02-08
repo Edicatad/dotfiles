@@ -19,7 +19,7 @@ do
         cd ..
     else
         printf "  Cloning %-63s" "$j"
-        OUTPUT="$(git clone $j 2>&1)"
+        OUTPUT="$(git clone --depth 1 $j 2>&1)"
         RC="$?"
     fi
     if [ ${RC} -eq 0 ]; then
