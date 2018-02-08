@@ -2,3 +2,7 @@
 vim/.vim/bundle/**
 # track the gitignore in case there are repos I want to store
 !vim/.vim/bundle/.gitignore
+
+# track the tools folder but not the cloned tools
+tools/**
+!tools/.gitignore
