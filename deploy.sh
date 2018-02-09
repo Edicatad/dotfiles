@@ -3,7 +3,7 @@
 
 REPOS=(
     "https://github.com/scrooloose/nerdtree" 
-    "https://github.com/sjl/badwolf"
+    "git://github.com/altercation/vim-colors-solarized"
     )
 
 echo "Cloning vim plugins from GitHub"
@@ -39,6 +39,7 @@ PROGRAMS=(
     "bash" 
     "tmux"
     "mutt"
+    "xresources"
     )
 
 echo "Arguments supplied for GNU Stow: '-t ${HOME} ${1}'"
