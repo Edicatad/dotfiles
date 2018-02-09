@@ -1,5 +1,5 @@
-" Maintainer:	Yri Davies	<0xdavy@gmail.com>
-" Last change:	2017 Jun 26
+" Maintainer:   Yri Davies  <0xdavy@gmail.com>
+" Last change:  2017 Jun 26
 
 " Misc {{{
 set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
@@ -7,38 +7,39 @@ set modelines=1                 " checks the last line of a file for mode change
 execute pathogen#infect()
 " }}}
 " Color scheme {{{
-syntax enable		" enable syntax processing
-colorscheme badwolf " use the molokai colorscheme in ~/.vim/colors/
+syntax enable           " enable syntax processing
+set background=dark     " use dark mode
+colorscheme solarized   " use the solarized colorscheme in ~/.vim/colors/
 " }}}
 " Indentation {{{
 " General indentation rules
-set tabstop=4		" tabs are 4 spaces long when reading a file
-set softtabstop=4	" tabs are 4 spaces long when editing (for backspace)
+set tabstop=4       " tabs are 4 spaces long when reading a file
+set softtabstop=4   " tabs are 4 spaces long when editing (for backspace)
 set shiftwidth=4    " expanded tabs are 4 spaces long
-set expandtab		" tabs are inserted as spaces for things like bash
+set expandtab       " tabs are inserted as spaces for things like bash
 set smarttab        " tab key brings you to the next tabstop multiple rather than hard-inserting four spaces
 set copyindent      " copy indentation from previous line
 " Filetype-specific indentation rules
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
-set number		    " line numbers
-set showcmd		    " shows the typed command bottom right
-set cursorline		" highlight current line
-filetype indent on	" opens indentation file based on detected filetype (.c, .py, etc)
-set wildmenu		" visual autocomplete for commands
+set number          " line numbers
+set showcmd         " shows the typed command bottom right
+set cursorline      " highlight current line
+filetype indent on  " opens indentation file based on detected filetype (.c, .py, etc)
+set wildmenu        " visual autocomplete for commands
 set wildmode=list:longest,list:full " more efficient autocomplete!
-set lazyredraw		" only redraw when necessary
-set showmatch		" highlight matching for brackets [{()}]
+set lazyredraw      " only redraw when necessary
+set showmatch       " highlight matching for brackets [{()}]
 " }}}
 " Search settings {{{
-set incsearch		" search as you type
-set hlsearch		" highlight matches
+set incsearch       " search as you type
+set hlsearch        " highlight matches
 set ignorecase      " ignore case in searches
 " }}}
 " Folding {{{
-set foldenable		    " enable this
-set foldlevelstart=10	" open 10 levels of folds
+set foldenable          " enable this
+set foldlevelstart=10   " open 10 levels of folds
 set foldnestmax=10      " allow at most 10 nested folds
 set foldmethod=indent   " fold based on indentation by default
 nnoremap <space> za
@@ -64,13 +65,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " }}}
 " Back up stuff {{{
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup      " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup        " keep a backup file (restore to previous version)
   set backupdir=/tmp,.
   set directory=/tmp,.
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile    " keep an undo file (undo changes after closing)
     set undodir=/tmp,.
   endif
 endif
