@@ -1,3 +1,4 @@
+source ~/.profile
 # .bash_profile
 
 # Get the aliases and functions
@@ -10,3 +11,5 @@ fi
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
+
+export PATH="$HOME/.cargo/bin:$PATH"
