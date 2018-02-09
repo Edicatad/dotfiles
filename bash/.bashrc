@@ -45,14 +45,27 @@ fi
 set -o vi
 export EDITOR=vim
 # }}}
+# {{{ Fzf & ripgrep
+# Source fzf if it exists
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Make fzf use ripgrep for speed
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+bind -x '"\C-p": vim $(fzf);'
+# }}}
 # {{{ Path settings
-if [ -d "$HOME/Dev/platform-tools" ] ; then
-    export PATH="$HOME/Dev/platform-tools:$PATH"
-fi
 # }}}
 # Launch script {{{
-# start in tmux if available
-[ -z $TMUX ] && export TERM=xterm-256color && exec tmux
+# Tmux-specific commands
+if [ -z $TMUX ] then
+    export TERM=xterm-256color
+    # Make fzf use a tmux pane for output
+    export FZF_TMUX=1
+    exec tmux
+fi
+
+# Fix urxvt colour rendering
+xrdb ~/.Xresources
 
 # Print a fancy tree in the terminal!
 LEAFCOLOUR=$RED

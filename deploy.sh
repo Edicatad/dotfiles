@@ -3,7 +3,7 @@
 
 REPOS=(
     "https://github.com/scrooloose/nerdtree" 
-    "https://github.com/sjl/badwolf"
+    "git://github.com/altercation/vim-colors-solarized"
     )
 
 echo "Cloning vim plugins from GitHub"
@@ -19,7 +19,7 @@ do
         cd ..
     else
         printf "  Cloning %-63s" "$j"
-        OUTPUT="$(git clone $j 2>&1)"
+        OUTPUT="$(git clone --depth 1 $j 2>&1)"
         RC="$?"
     fi
     if [ ${RC} -eq 0 ]; then
@@ -39,6 +39,7 @@ PROGRAMS=(
     "bash" 
     "tmux"
     "mutt"
+    "xresources"
     )
 
 echo "Arguments supplied for GNU Stow: '-t ${HOME} ${1}'"
