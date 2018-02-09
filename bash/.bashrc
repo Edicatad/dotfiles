@@ -63,7 +63,7 @@ bind -x '"\C-p": vim $(fzf);'
 # }}}
 # Launch script {{{
 # Tmux-specific commands
-if [ -z $TMUX ] then
+if [ -z $TMUX ]; then
     export TERM=xterm-256color
     # Make fzf use a tmux pane for output
     export FZF_TMUX=1
