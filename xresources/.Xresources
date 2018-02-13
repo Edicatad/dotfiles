@@ -1,5 +1,4 @@
-!! Force urxvt to not keep history
-URxvt*saveLines:0
+Urxvt*font: xft:DejaVu Sans Mono:size=11
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 
