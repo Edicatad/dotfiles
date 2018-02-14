@@ -11,7 +11,14 @@ YELLOW='\033[0;33m'
 NOCOLOUR='\033[00m'
 # }}}
 # History settings {{{
-# don't put duplicate lines in the history or force ignoredups and ignorespace                                                                                                                                 
+# Make sure all terminals save history
+# Checks that PROMPT_COMMAND is not read-only
+if unset PROMPT_COMMAND 2> /dev/null
+then
+    PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
+fi
+
+# don't put duplicate lines in the history or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace                                                                                              
 # append to the history file, don't overwrite it    
 shopt -s histappend                                                                                                                                                                                                        
@@ -39,6 +46,8 @@ then # I am root
 else
     PS1="${PROMPTUSERCOLOUR}[${PROMPTNOCOLOUR}\!${PROMPTUSERCOLOUR}][\[\u@\h ${PROMPTPATHCOLOUR}\w${PROMPTUSERCOLOUR}]\\$ ${PROMPTNOCOLOUR}"
 fi
+# TODO Separate out prompt into logical steps (check root, then check ssh, etc)
+# TODO Figure out a way to make prompt not change title (\033 apparently changes title)
 # }}}
 # Editor settings {{{
 # setup vi as the default editor
