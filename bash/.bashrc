@@ -74,7 +74,7 @@ if [ -z $TMUX ]; then
 fi
 
 # Fix urxvt colour rendering
-xrdb ~/.Xresources
+xrdb -load ~/.Xresources
 
 # Print a fancy tree in the terminal!
 LEAFCOLOUR=$RED
