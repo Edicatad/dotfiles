@@ -13,7 +13,6 @@ NOCOLOUR='\033[00m'
 if [ -d $HOME/.dotfiles-tools/base16-shell ]; then
     BASE16_SHELL=$HOME/.dotfiles-tools/base16-shell/
     [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-    base16_flat
 fi
 # }}}
 # History settings {{{
