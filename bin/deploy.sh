@@ -124,3 +124,4 @@ case ${answer:0:1} in
         ln -sfh "$(pwd)/colour" ~/.dotfiles-colours
         ;;
 esac
+
