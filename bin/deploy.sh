@@ -2,9 +2,10 @@
 # Clones git repos or otherwise fetches vim plugins
 
 REPOS=(
-    "https://github.com/scrooloose/nerdtree" 
-    "git://github.com/altercation/vim-colors-solarized"
-    )
+"https://github.com/scrooloose/nerdtree" 
+"git://github.com/altercation/vim-colors-solarized"
+"https://github.com/chriskempson/base16-vim"
+)
 
 echo "Cloning vim plugins from GitHub"
 cd vim/.vim/bundle
@@ -35,12 +36,12 @@ cd ../../..
 # Executes stow commands for git'd dotfiles
 
 PROGRAMS=(
-    "vim"
-    "bash" 
-    "tmux"
-    "mutt"
-    "xresources"
-    )
+"vim"
+"bash" 
+"tmux"
+"mutt"
+"xresources"
+)
 
 echo "Arguments supplied for GNU Stow: '-t ${HOME} ${1}'"
 echo 'Deploying configuration files:'
@@ -59,4 +60,52 @@ do
 done
 
 # Symlink userdata
-ln -siv .dotfiles-userdata ~/.dotfiles-userdata
+if [ -d ~/.dotfiles-userdata ]; then
+    read -t 3 -p "Do you want to overwrite userdata? [yN]" answer
+    case ${answer:0:1} in
+        y|Y )
+            ln -sf "$(pwd)/.dotfiles-userdata" ~/.dotfiles-userdata
+            ;;
+        * ) echo ;;
+    esac
+else
+    ln -s "$(pwd)/.dotfiles-userdata" ~/.dotfiles-userdata
+fi
+
+TOOLS=(
+"https://github.com/chriskempson/base16-shell"
+)
+
+# Symlink tools
+read -t 3 -p "Do you want to install the basic tools? [Yn]" answer
+case ${answer:0:1} in
+    n|N ) echo ;;
+    * ) 
+        echo
+        cd tools
+        for k in "${TOOLS[@]}"
+        do
+            REPONAME="${k##*/}"
+            if [ -s "${REPONAME}" ]; then
+                printf "  Pulling %-63s" "${REPONAME}"
+                cd "${REPONAME}"
+                OUTPUT="$(git pull 2>&1)"
+                RC="$?"
+                cd ..
+            else
+                printf "  Cloning %-63s" "$k"
+                OUTPUT="$(git clone --depth 1 $k 2>&1)"
+                RC="$?"
+            fi
+            if [ ${RC} -eq 0 ]; then
+                printf  "\e[1;32m[OK]\e[0m\n"
+            else
+                printf  "\e[1;31m[Error]\e[0m\n"
+                echo    "    exited with error code ${RC}"
+                printf  "    %s\n" "$(echo "${OUTPUT}" | sed '2,$s/^/    /g')"
+            fi
+        done
+        cd ..
+        ln -sf "$(pwd)/tools" ~/.dotfiles-tools
+        ;;
+esac

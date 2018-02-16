@@ -8,8 +8,10 @@ execute pathogen#infect()
 " }}}
 " Color scheme {{{
 syntax enable           " enable syntax processing
-set background=dark     " use dark mode
-colorscheme solarized   " use the solarized colorscheme in ~/.vim/colors/
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
 " }}}
 " Indentation {{{
 " General indentation rules

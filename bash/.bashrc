@@ -9,6 +9,11 @@ RED='\033[0;31m'
 WHITE='\033[0;37m'
 YELLOW='\033[0;33m'
 NOCOLOUR='\033[00m'
+# Base16 shell script
+if [ -d $HOME/.dotfiles-tools/base16-shell ]; then
+    BASE16_SHELL=$HOME/.dotfiles-tools/base16-shell/
+    [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+fi
 # }}}
 # History settings {{{
 # Make sure all terminals save history
