@@ -72,21 +72,24 @@ if executable("rg")
 endif
 " }}}
 " Fzf {{{
-let g:fzf_layout = {'left': '30%'}
-" Add fzf to runtimepath
-set rtp+=~/.fzf
-" And also for fecken mac
-set rtp+=/usr/local/opt/fzf
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+if executable("fzf")
+    " Add fzf to runtimepath
+    set rtp+=~/.dotfiles-tools/fzf
+    " And also for fecken mac
+    set rtp+=/usr/local/opt/fzf
+    " [Layout] Fzf uses the left 30% of the screen in vim
+    let g:fzf_layout = {'left': '30%'}
+    " [Buffers] Jump to the existing window if possible
+    let g:fzf_buffers_jump = 1
+endif
 " }}}
 " Commands {{{
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 nnoremap <C-p>a :Rg
 " }}}
