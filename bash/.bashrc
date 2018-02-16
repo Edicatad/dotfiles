@@ -13,6 +13,7 @@ NOCOLOUR='\033[00m'
 if [ -d $HOME/.dotfiles-tools/base16-shell ]; then
     BASE16_SHELL=$HOME/.dotfiles-tools/base16-shell/
     [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+    base16_flat
 fi
 # }}}
 # History settings {{{
@@ -61,11 +62,17 @@ export EDITOR=vim
 # }}}
 # {{{ Fzf & ripgrep
 # Source fzf if it exists
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# Make fzf use ripgrep for speed
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-bind -x '"\C-p": vim $(fzf);'
+if [ -f ~/.fzf.bash ]; then  
+    source ~/.fzf.bash
+    # Make fzf use ripgrep for speed
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    bind -x '"\C-p": vim $(fzf);'
+    # Source colour scheme if it exists
+    if [ -d $HOME/.dotfiles-colours/base16-fzf ]; then
+        source $HOME/.dotfiles-colours/base16-fzf/bash/base16-flat.config
+    fi
+fi
 # }}}
 # {{{ Path settings
 # }}}
