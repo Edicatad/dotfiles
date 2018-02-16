@@ -6,3 +6,7 @@ vim/.vim/bundle/**
 # track the tools folder but not the cloned tools
 tools/**
 !tools/.gitignore
+
+# track the colours folder but not the cloned tools
+colours/**
+!colours/.gitignore
