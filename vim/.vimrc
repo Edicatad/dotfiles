@@ -77,6 +77,18 @@ let g:fzf_layout = {'left': '30%'}
 set rtp+=~/.fzf
 " And also for fecken mac
 set rtp+=/usr/local/opt/fzf
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" }}}
+" Commands {{{
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+
+nnoremap <C-p>a :Rg
 " }}}
 " Back up stuff {{{
 if has("vms")
