@@ -60,6 +60,25 @@ function _clone_or_pull_repos {
     done
 }
 
+#=====
+#  Safely symlinks regardless of *nix version
+#
+#  Params
+#  $1: Link origin
+#  $2: Link target
+#==
+function _link {
+    unamestr="$(uname -s)"
+    case "${unamestr}" in
+        Linux*)
+            ln -sfn $1 $2
+            ;;
+        Darwin*)
+            ln -sfh $1 $2
+            ;;
+    esac
+}
+
 echo "Cloning vim plugins using git"
 cd vim/.vim/bundle
 _clone_or_pull_repos VIMPLUGINS
@@ -89,12 +108,13 @@ if [ -d ~/.dotfiles-userdata ]; then
     case ${answer:0:1} in
         y|Y )
             echo "Overwriting userdata"
-            ln -sfh "$(pwd)/userdata" ~/.dotfiles-userdata
+            _link "$(pwd)/userdata" ~/.dotfiles-userdata
             ;;
         * ) echo ;;
     esac
 else
     echo "Creating userdata stubs in ~/.dotfiles-userdata"
+    # ln -s is unambiguous so doesn't need a wrapper function
     ln -s "$(pwd)/userdata" ~/.dotfiles-userdata
 fi
 
@@ -108,7 +128,7 @@ case ${answer:0:1} in
         cd tools
         _clone_or_pull_repos CLITOOLS
         cd ..
-        ln -sfh "$(pwd)/tools" ~/.dotfiles-tools
+        _link "$(pwd)/tools" ~/.dotfiles-tools
         ;;
 esac
 
@@ -122,7 +142,7 @@ case ${answer:0:1} in
         cd colour
         _clone_or_pull_repos COLOURSCHEME
         cd ..
-        ln -sfh "$(pwd)/colour" ~/.dotfiles-colours
+        _link "$(pwd)/colour" ~/.dotfiles-colours
         ;;
 esac
 
