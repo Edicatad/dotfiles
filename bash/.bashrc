@@ -81,7 +81,7 @@ if [ -z $TMUX ]; then
     export TERM=xterm-256color
     # Make fzf use a tmux pane for output
     export FZF_TMUX=1
-    exec tmux
+    exec tmux -2
 fi
 
 # Fix urxvt colour rendering
