@@ -65,17 +65,30 @@ autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTr
 " close NERDTree if it's the only screen left in vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
+" Ripgrep {{{
+if executable("rg")
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+" }}}
+" Fzf {{{
+let g:fzf_layout = {'left': '30%'}
+" Add fzf to runtimepath
+set rtp+=~/.fzf
+" And also for fecken mac
+set rtp+=/usr/local/opt/fzf
+" }}}
 " Back up stuff {{{
 if has("vms")
-  set nobackup      " do not keep a backup file, use versions instead
+    set nobackup      " do not keep a backup file, use versions instead
 else
-  set backup        " keep a backup file (restore to previous version)
-  set backupdir=/tmp,.
-  set directory=/tmp,.
-  if has('persistent_undo')
-    set undofile    " keep an undo file (undo changes after closing)
-    set undodir=/tmp,.
-  endif
+    set backup        " keep a backup file (restore to previous version)
+    set backupdir=/tmp,.
+    set directory=/tmp,.
+    if has('persistent_undo')
+        set undofile    " keep an undo file (undo changes after closing)
+        set undodir=/tmp,.
+    endif
 endif
 " }}}
 
