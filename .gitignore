@@ -8,5 +8,5 @@ tools/**
 !tools/.gitignore
 
 # track the colours folder but not the cloned tools
-colours/**
-!colours/.gitignore
+colour/**
+!colour/.gitignore
