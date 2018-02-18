@@ -60,10 +60,10 @@ else
 endif
 " }}} 
 " Nerdtree {{{
-autocmd vimenter * NERDTree     " start NERDTree when vim starts
-autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTree
+" autocmd vimenter * NERDTree     " start NERDTree when vim starts
+" autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTree
 " close NERDTree if it's the only screen left in vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 " Ripgrep {{{
 if executable("rg")
