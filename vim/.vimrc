@@ -33,6 +33,7 @@ set wildmenu        " visual autocomplete for commands
 set wildmode=list:longest,list:full " more efficient autocomplete!
 set lazyredraw      " only redraw when necessary
 set showmatch       " highlight matching for brackets [{()}]
+set mouse=a         " Allow mouse interaction in all modes
 " }}}
 " Search settings {{{
 set incsearch       " search as you type
@@ -60,10 +61,10 @@ else
 endif
 " }}} 
 " Nerdtree {{{
-autocmd vimenter * NERDTree     " start NERDTree when vim starts
-autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTree
+" autocmd vimenter * NERDTree     " start NERDTree when vim starts
+" autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTree
 " close NERDTree if it's the only screen left in vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 " Ripgrep {{{
 if executable("rg")
@@ -84,9 +85,24 @@ if executable("fzf")
 endif
 " }}}
 " Commands {{{
+" Ripgrep everything
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
             \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+" Ripgrep only php files
+command! -bang -nargs=* Rgphp
+            \ call fzf#vim#grep(
+            \   'rg -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+" Ripgrep only css/html files
+command! -bang -nargs=* Rghtmlcss
+            \ call fzf#vim#grep(
+            \   'rg -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
             \   <bang>0 ? fzf#vim#with_preview('up:60%')
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
