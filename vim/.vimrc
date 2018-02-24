@@ -108,6 +108,8 @@ command! -bang -nargs=* Rghtmlcss
             \   <bang>0)
 
 nnoremap <C-p>a :Rg
+nnoremap <C-p>p :Rgphp
+nnoremap <C-p>h :Rghtmlcss
 " }}}
 " Back up stuff {{{
 if has("vms")
