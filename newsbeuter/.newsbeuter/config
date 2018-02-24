@@ -1,3 +1,25 @@
 auto-reload yes
 browser firefox
 cleanup-on-quit yes
+articlelist-format "%4i %f %D %?T?|%-17T| ?%t"
+
+#   Key binds
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+bind-key j down all
+bind-key k up all
+bind-key J next-feed
+bind-key K prev-feed
+
+unbind-key g all
+unbind-key G all
+bind-key g home all
+bind-key G end all
+
+bind-key b pageup all
+bind-key SPACE pagedown all
+
+bind-key h quit
+bind-key l open
