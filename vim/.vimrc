@@ -28,6 +28,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 set number          " line numbers
 set showcmd         " shows the typed command bottom right
 set cursorline      " highlight current line
+set cursorcolumn    " highlight current column
 filetype indent on  " opens indentation file based on detected filetype (.c, .py, etc)
 set wildmenu        " visual autocomplete for commands
 set wildmode=list:longest,list:full " more efficient autocomplete!
@@ -106,10 +107,45 @@ command! -bang -nargs=* Rghtmlcss
             \   <bang>0 ? fzf#vim#with_preview('up:60%')
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
+" Ripgrep only css/html files
+command! -bang -nargs=* Rgxml
+            \ call fzf#vim#grep(
+            \   'rg -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+command! -bang -nargs=* Rgu
+            \ call fzf#vim#grep(
+            \   'rg -u --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+" Ripgrep only php files
+command! -bang -nargs=* Rgphpu
+            \ call fzf#vim#grep(
+            \   'rg -u -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+" Ripgrep only css/html files
+command! -bang -nargs=* Rghtmlcssu
+            \ call fzf#vim#grep(
+            \   'rg -u -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+" Ripgrep only css/html files
+command! -bang -nargs=* Rgxmlu
+            \ call fzf#vim#grep(
+            \   'rg -u -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 nnoremap <C-p>a :Rg
 nnoremap <C-p>p :Rgphp
 nnoremap <C-p>h :Rghtmlcss
+nnoremap <C-p>x :Rgxml
 " }}}
 " Back up stuff {{{
 if has("vms")
