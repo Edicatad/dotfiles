@@ -1,6 +1,29 @@
 " Maintainer:   Yri Davies  <0xdavy@gmail.com>
 " Last change:  2017 Jun 26
 
+" Variables and arrays {{{
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'N·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ ''  : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ ''  : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \}
+
+" }}}
 " Misc {{{
 set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
 set modelines=1                 " checks the last line of a file for mode changes
@@ -26,6 +49,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
 set number          " line numbers
+set showmode        " Show the current mode
 set showcmd         " shows the typed command bottom right
 set cursorline      " highlight current line
 set cursorcolumn    " highlight current column
@@ -35,11 +59,48 @@ set wildmode=list:longest,list:full " more efficient autocomplete!
 set lazyredraw      " only redraw when necessary
 set showmatch       " highlight matching for brackets [{()}]
 set mouse=a         " Allow mouse interaction in all modes
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+" }}}
+" Status line {{{
+set statusline =%#identifier#
+set statusline+=[%f]    "tail of the filename
+set statusline+=%*
+
+"display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
+
+"display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
+
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+
+"read only flag
+set statusline+=%#identifier#
+set statusline+=%r
+set statusline+=%*
+
+"modified flag
+set statusline+=%#warningmsg#
+set statusline+=%m
+set statusline+=%*
+
+set statusline+=%=
+set statusline+=%{g:currentmode[mode()]}
+
+set laststatus=2        " always show the status line
+
 " }}}
 " Search settings {{{
 set incsearch       " search as you type
 set hlsearch        " highlight matches
 set ignorecase      " ignore case in searches
+set smartcase       " respect case if you type it
 " }}}
 " Folding {{{
 set foldenable          " enable this
@@ -60,6 +121,9 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+" }}} 
+" Nerdtree {{{
+" autocmd vimenter * NERDTree     " start NERDTree when vim starts
 " }}} 
 " Nerdtree {{{
 " autocmd vimenter * NERDTree     " start NERDTree when vim starts
@@ -143,9 +207,6 @@ command! -bang -nargs=* Rgxmlu
             \   <bang>0)
 
 nnoremap <C-p>a :Rg
-nnoremap <C-p>p :Rgphp
-nnoremap <C-p>h :Rghtmlcss
-nnoremap <C-p>x :Rgxml
 " }}}
 " Back up stuff {{{
 if has("vms")
@@ -159,6 +220,43 @@ else
         set undodir=/tmp,.
     endif
 endif
+" }}}
+" Functions {{{
+"
+"jump to last cursor position when opening a file
+"dont do it when writing a commit log entry
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+    if &filetype !~ 'svn\|commit\c'
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+            normal! zz
+        endif
+    else
+        call cursor(1,1)
+    endif
+endfunction
+
+" Toggle a markdown notes file in a fixed window on the right with f12
+nnoremap <F12> :NotesToggle<cr>
+command! -nargs=0 NotesToggle call <sid>toggleNotes()
+function! s:toggleNotes() abort
+    let winnr = bufwinnr("notes.md")
+    if winnr > 0
+        exec winnr . "wincmd c"
+        return
+    endif
+    botright 100vs notes.md
+    setl wfw
+    setl nonu
+    " hack to make nerdtree et al not split the window
+    setl previewwindow
+    " for some reason this doesnt get run automatically and the cursor 
+    " position doesn't get set
+    doautocmd bufreadpost %
+    " normal zMzO
+endfunction
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0

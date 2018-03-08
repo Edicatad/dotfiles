@@ -58,6 +58,8 @@ fi
 # setup vi as the default editor
 set -o vi
 export EDITOR=vim
+# don't die on <C-s>
+stty -ixon
 # }}}
 # {{{ Fzf & ripgrep
 # Source fzf if it exists
