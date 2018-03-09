@@ -3,12 +3,12 @@
 [ -z "$PS1" ] && return                                                                                                                                                           
 # Colour settings {{{
 # Colour settings for use in this bash file
-CYAN='\033[0;36m'
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-WHITE='\033[0;37m'
-YELLOW='\033[0;33m'
-NOCOLOUR='\033[00m'
+colour_cyan='\033[0;36m'
+colour_green='\033[0;32m'
+colour_red='\033[0;31m'
+colour_white='\033[0;37m'
+colour_yellow='\033[0;33m'
+no_colour='\033[00m'
 # Base16 shell script
 if [ -d $HOME/.dotfiles-tools/base16-shell ]; then
     BASE16_SHELL=$HOME/.dotfiles-tools/base16-shell/
@@ -38,24 +38,30 @@ shopt -s checkwinsize
 # }}}
 # Prompt settings {{{
 # Prompt colour settings {{{
-PROMPTROOTCOLOUR="${RED}\]"
-PROMPTUSERCOLOUR="${GREEN}\]"
-PROMPTPATHCOLOUR="${YELLOW}\]"
-PROMPTNOCOLOUR="${NOCOLOUR}\]"
+prompt_path_colour="${colour_yellow}\]"
+prompt_no_colour="${no_colour}\]"
+if [ $(id -u) -eq 0 ];
+then # I am root
+    prompt_base_colour="${colour_red}\]"
+else
+    prompt_base_colour="${colour_green}\]"
+fi
 # }}}
 # Current prompt:
 # [hist][user@host pwd]$ 
-if [ $(id -u) -eq 0 ];
-then # I am root
-    PS1="${PROMPTROOTCOLOUR}[${PROMPTNOCOLOUR}\!${PROMPTROOTCOLOUR}][\[\u@\h ${PROMPTPATHCOLOUR}\w${PROMPTROOTCOLOUR}]\\$ ${PROMPTNOCOLOUR}"
-else
-    PS1="${PROMPTUSERCOLOUR}[${PROMPTNOCOLOUR}\!${PROMPTUSERCOLOUR}][\[\u@\h ${PROMPTPATHCOLOUR}\w${PROMPTUSERCOLOUR}]\\$ ${PROMPTNOCOLOUR}"
-fi
+prompt="${prompt_base_colour}["
+prompt+="${prompt_no_colour}\!"
+prompt+="${prompt_base_colour}][\[\u@\h "
+prompt+="${prompt_path_colour}\w"
+prompt+="${prompt_base_colour}]\\$ "
+prompt+="${prompt_no_colour}"
+PS1="${prompt}"
+
 # TODO Separate out prompt into logical steps (check root, then check ssh, etc)
 # TODO Figure out a way to make prompt not change title (\033 apparently changes title)
 # }}}
 # Editor settings {{{
-# setup vi as the default editor
+# setup vim as the default editor
 export EDITOR=vim
 # don't die on <C-s>
 stty -ixon
@@ -90,25 +96,25 @@ fi
 xrdb -load ~/.Xresources
 
 # Print a fancy tree in the terminal!
-LEAFCOLOUR=$RED
-BARKCOLOUR=$WHITE
+leaf_colour=$colour_red
+bark_colour=$colour_white
 
 echo
-echo -e "               ${LEAFCOLOUR}&&&"
+echo -e "               ${leaf_colour}&&&"
 echo -e "             &&&&&&"
-echo -e "          &&&&${BARKCOLOUR}\\/${LEAFCOLOUR}&&& &&&"
-echo -e "         &&&${BARKCOLOUR}|,/   |/${LEAFCOLOUR}& &&&"
-echo -e "          &&&${BARKCOLOUR}/   /   /_${LEAFCOLOUR}&&& &&&${BARKCOLOUR}"
-echo -e "             \\  {  ,/_____/_${LEAFCOLOUR}&&  &&${BARKCOLOUR}"
-echo -e "             {  / /           ${LEAFCOLOUR}&&${BARKCOLOUR},${LEAFCOLOUR}&&${BARKCOLOUR}"
-echo -e "             \`, \\{==_     ,____/_${LEAFCOLOUR}&&&&${BARKCOLOUR}"
-echo -e "               } }/ \`\\___{    ${LEAFCOLOUR}&${BARKCOLOUR}\`${LEAFCOLOUR}&&${BARKCOLOUR}"
-echo -e "              }{{         \\____${LEAFCOLOUR}&&&&${BARKCOLOUR}"
-echo -e "             {}{            \`${LEAFCOLOUR}&${BARKCOLOUR}\\\\${LEAFCOLOUR}&&&${BARKCOLOUR}"
-echo -e "            }{{               ${LEAFCOLOUR}&&&${BARKCOLOUR}"
+echo -e "          &&&&${bark_colour}\\/${leaf_colour}&&& &&&"
+echo -e "         &&&${bark_colour}|,/   |/${leaf_colour}& &&&"
+echo -e "          &&&${bark_colour}/   /   /_${leaf_colour}&&& &&&${bark_colour}"
+echo -e "             \\  {  ,/_____/_${leaf_colour}&&  &&${bark_colour}"
+echo -e "             {  / /           ${leaf_colour}&&${bark_colour},${leaf_colour}&&${bark_colour}"
+echo -e "             \`, \\{==_     ,____/_${leaf_colour}&&&&${bark_colour}"
+echo -e "               } }/ \`\\___{    ${leaf_colour}&${bark_colour}\`${leaf_colour}&&${bark_colour}"
+echo -e "              }{{         \\____${leaf_colour}&&&&${bark_colour}"
+echo -e "             {}{            \`${leaf_colour}&${bark_colour}\\\\${leaf_colour}&&&${bark_colour}"
+echo -e "            }{{               ${leaf_colour}&&&${bark_colour}"
 echo -e "      , -=-~{ .-^- _"
 echo -e "            \`}"
-echo -e "            {${NOCOLOUR}" # this removes the colouring from the rest of the output
+echo -e "            {${no_colour}" # this removes the colouring from the rest of the output
 date
 # }}}
 
