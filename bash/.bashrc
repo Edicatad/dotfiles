@@ -56,7 +56,6 @@ fi
 # }}}
 # Editor settings {{{
 # setup vi as the default editor
-set -o vi
 export EDITOR=vim
 # don't die on <C-s>
 stty -ixon
