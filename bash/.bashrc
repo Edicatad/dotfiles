@@ -51,7 +51,7 @@ fi
 # [hist][user@host pwd]$ 
 prompt="${prompt_base_colour}["
 prompt+="${prompt_no_colour}\!"
-prompt+="${prompt_base_colour}][\[\u@\h "
+prompt+="${prompt_base_colour}][\[\u "
 prompt+="${prompt_path_colour}\w"
 prompt+="${prompt_base_colour}]\\$ "
 prompt+="${prompt_no_colour}"
