@@ -65,19 +65,28 @@ set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set fillchars=vert:\ 
 " }}}
 " Status line {{{
-set statusline =%#identifier#
-set statusline+=[%f]    "tail of the filename
-set statusline+=%*
+hi User1 ctermfg=8 ctermbg=18
+hi User2 ctermfg=18 ctermbg=8
+
+set statusline =
+
+set statusline+=%2*
+set statusline+=%3c\     "Column number
+set statusline+=%1*
+
+"set statusline+=%#identifier#
+set statusline+=\ [%f]\   "tail of the filename
+"set statusline+=%1*
 
 "display a warning if fileformat isnt unix
 set statusline+=%#warningmsg#
 set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
+set statusline+=%1*
 
 "display a warning if file encoding isnt utf-8
 set statusline+=%#warningmsg#
 set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
+set statusline+=%1*
 
 set statusline+=%h      "help file flag
 set statusline+=%y      "filetype
@@ -85,12 +94,12 @@ set statusline+=%y      "filetype
 "read only flag
 set statusline+=%#identifier#
 set statusline+=%r
-set statusline+=%*
+set statusline+=%1*
 
 "modified flag
 set statusline+=%#warningmsg#
 set statusline+=%m
-set statusline+=%*
+set statusline+=%1*
 
 set statusline+=%=
 set statusline+=%{g:currentmode[mode()]}
