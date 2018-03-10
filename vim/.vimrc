@@ -35,6 +35,7 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 endif
+highlight VertSplit ctermfg=bg ctermbg=18
 " }}}
 " Indentation {{{
 " General indentation rules
@@ -61,6 +62,7 @@ set showmatch       " highlight matching for brackets [{()}]
 set mouse=a         " Allow mouse interaction in all modes
 set showbreak=↪\ 
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set fillchars=vert:\ 
 " }}}
 " Status line {{{
 set statusline =%#identifier#
@@ -107,7 +109,6 @@ set foldenable          " enable this
 set foldlevelstart=10   " open 10 levels of folds
 set foldnestmax=10      " allow at most 10 nested folds
 set foldmethod=indent   " fold based on indentation by default
-nnoremap <space> za
 " }}}
 " Movement {{{
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
@@ -204,6 +205,15 @@ command! -bang -nargs=* Rgxmlu
             \   <bang>0)
 
 nnoremap <C-p>a :Rg
+" }}}
+" Mappings {{{
+"   Disable normal space functionality
+nnoremap <SPACE> <Nop>
+"   Use it as a leader for keybinds
+let mapleader=" "
+"   Clear search
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <leader><space> za
 " }}}
 " Back up stuff {{{
 if has("vms")
