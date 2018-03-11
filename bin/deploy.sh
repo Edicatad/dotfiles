@@ -6,6 +6,7 @@ VIM_PLUGINS=(
 "https://github.com/junegunn/fzf.vim"
 "https://github.com/chriskempson/base16-vim"
 "https://github.com/tpope/vim-surround"
+"https://github.com/tpope/vim-fugitive"
 )
 
 STOW_PROGRAMS=(
