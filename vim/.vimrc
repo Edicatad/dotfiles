@@ -76,6 +76,8 @@ hi User3 ctermfg=0 ctermbg=3
 hi User4 ctermfg=1 ctermbg=18
 " Git
 hi User5 ctermfg=4 ctermbg=18
+" Mode
+hi User6 ctermfg=0 ctermbg=17
 
 set statusline =
 
@@ -115,8 +117,13 @@ set statusline+=%4*
 set statusline+=%m
 set statusline+=%1*
 
+" Screen side marker, everything below this is on the right
 set statusline+=%=
-set statusline+=%{g:currentmode[mode()]}
+
+" Vim mode, verbose
+set statusline+=%6*
+set statusline+=\ %{g:currentmode[mode()]}\ 
+set statusline+=%1*\ 
 
 set laststatus=2        " always show the status line
 
