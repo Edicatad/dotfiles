@@ -74,6 +74,8 @@ hi User2 ctermfg=2 ctermbg=0
 hi User3 ctermfg=0 ctermbg=3
 " Warnings
 hi User4 ctermfg=1 ctermbg=18
+" Git
+hi User5 ctermfg=4 ctermbg=18
 
 set statusline =
 
@@ -81,6 +83,7 @@ set statusline+=%2*
 set statusline+=%3c\     "Column number
 set statusline+=%1*
 
+set statusline+=%1*\ 
 set statusline+=%3*
 set statusline+=\ %f\   "tail of the filename
 set statusline+=%h      "help file flag
@@ -88,7 +91,9 @@ set statusline+=%y\     "filetype
 set statusline+=%1*
 
 " Status line for vim-fugitive
+set statusline+=%5*
 set statusline+=\ %{fugitive#statusline()}\ 
+set statusline+=%1*
 
 "display a warning if fileformat isnt unix
 set statusline+=%4*
