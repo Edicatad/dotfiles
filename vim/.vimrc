@@ -64,6 +64,13 @@ set mouse=a         " Allow mouse interaction in all modes
 set showbreak=↪\ 
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set fillchars=vert:\ 
+augroup CursorIndicatorsInActiveWindowOnly
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+    autocmd WinLeave * setlocal nocursorline
+    autocmd WinLeave * setlocal nocursorcolumn
+augroup END
 " }}}
 " Status line {{{
 " Base statusline
