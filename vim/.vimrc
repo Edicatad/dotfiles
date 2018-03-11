@@ -68,6 +68,7 @@ set fillchars=vert:\
 " Status line {{{
 hi User1 ctermfg=8 ctermbg=18
 hi User2 ctermfg=2 ctermbg=0
+hi User3 ctermfg=0 ctermbg=3
 
 set statusline =
 
@@ -75,9 +76,11 @@ set statusline+=%2*
 set statusline+=%3c\     "Column number
 set statusline+=%1*
 
-"set statusline+=%#identifier#
-set statusline+=\ [%f]\   "tail of the filename
-"set statusline+=%1*
+set statusline+=%3*
+set statusline+=\ %f\   "tail of the filename
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+set statusline+=%1*
 
 "display a warning if fileformat isnt unix
 set statusline+=%#warningmsg#
@@ -88,9 +91,6 @@ set statusline+=%1*
 set statusline+=%#warningmsg#
 set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
 set statusline+=%1*
-
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
 
 "read only flag
 set statusline+=%#identifier#
