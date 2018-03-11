@@ -152,6 +152,11 @@ set scrolljump=5    " jump 5 lines when the cursor leaves the screen
 set scrolloff=15    " keep 15 lines visible above and below the cursor at all times
 " }}}
 " TMUX workarounds {{{
+if &term =~ "xterm\\|rxvt\\|screen"
+    let &t_SI = "\<Esc>[6 q"
+    let &t_SR = "\<Esc>[4 q"
+    let &t_EI = "\<Esc>[2 q"
+endif
 if exists('$TMUX')  " change cursor mode to vertical bar in TMUX
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
