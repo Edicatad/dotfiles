@@ -73,7 +73,7 @@ hi User2 ctermfg=2 ctermbg=0
 " File name
 hi User3 ctermfg=0 ctermbg=3
 " Warnings
-hi User4 ctermfg=0 ctermbg=1
+hi User4 ctermfg=1 ctermbg=18
 
 set statusline =
 
@@ -87,6 +87,7 @@ set statusline+=%h      "help file flag
 set statusline+=%y\     "filetype
 set statusline+=%1*
 
+" Status line for vim-fugitive
 set statusline+=\ %{fugitive#statusline()}\ 
 
 "display a warning if fileformat isnt unix
