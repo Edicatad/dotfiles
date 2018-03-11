@@ -50,6 +50,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
 set number          " line numbers
+set relativenumber  " Show relative numbers for lines
 set showmode        " Show the current mode
 set showcmd         " shows the typed command bottom right
 set cursorline      " highlight current line
@@ -66,7 +67,7 @@ set fillchars=vert:\
 " }}}
 " Status line {{{
 hi User1 ctermfg=8 ctermbg=18
-hi User2 ctermfg=18 ctermbg=8
+hi User2 ctermfg=2 ctermbg=0
 
 set statusline =
 
