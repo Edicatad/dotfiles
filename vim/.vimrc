@@ -66,9 +66,14 @@ set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set fillchars=vert:\ 
 " }}}
 " Status line {{{
+" Base statusline
 hi User1 ctermfg=8 ctermbg=18
+" Column number
 hi User2 ctermfg=2 ctermbg=0
+" File name
 hi User3 ctermfg=0 ctermbg=3
+" Warnings
+hi User4 ctermfg=0 ctermbg=1
 
 set statusline =
 
@@ -79,26 +84,28 @@ set statusline+=%1*
 set statusline+=%3*
 set statusline+=\ %f\   "tail of the filename
 set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
+set statusline+=%y\     "filetype
 set statusline+=%1*
 
+set statusline+=\ %{fugitive#statusline()}\ 
+
 "display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%4*
+set statusline+=%{&ff!='unix'?'\ ['.&ff.']\ ':''}
 set statusline+=%1*
 
 "display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%4*
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'\ ['.&fenc.']\ ':''}
 set statusline+=%1*
 
 "read only flag
-set statusline+=%#identifier#
+set statusline+=%4*
 set statusline+=%r
 set statusline+=%1*
 
 "modified flag
-set statusline+=%#warningmsg#
+set statusline+=%4*
 set statusline+=%m
 set statusline+=%1*
 
