@@ -94,7 +94,8 @@ set statusline+=%1*
 
 set statusline+=%1*\ 
 set statusline+=%3*
-set statusline+=\ %t\   "tail of the filename
+set statusline+=\ %<    " Truncate here
+set statusline+=%f\     "tail of the filename
 set statusline+=%h      "help file flag
 set statusline+=%y\     "filetype
 set statusline+=%1*
