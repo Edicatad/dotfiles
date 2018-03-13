@@ -308,5 +308,14 @@ function! s:toggleNotes() abort
 endfunction
 
 " }}}
+" OS-specific stuff {{{
+if has ('unix')
+    if has ('osx')  " OSX
+        source .vim/mac-specific.vim
+    else            " Linux etc
+        source .vim/linux-specific.vim
+    endif
+endif
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
