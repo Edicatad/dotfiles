@@ -297,8 +297,9 @@ function! s:toggleNotes() abort
         return
     endif
     botright 100vs notes.md
-    setl wfw
-    setl nonu
+    setl winfixwidth
+    setl nonumber
+    setl norelativenumber
     " hack to make nerdtree et al not split the window
     setl previewwindow
     " for some reason this doesnt get run automatically and the cursor 
