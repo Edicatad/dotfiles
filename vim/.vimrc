@@ -177,6 +177,10 @@ if executable("fzf")
 endif
 " }}}
 " Commands {{{
+" Globals
+command! -nargs=* RunSilent
+      \ | execute ':silent !'.'<args>'
+      \ | execute ':redraw!'
 " Ripgrep everything
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
@@ -243,6 +247,9 @@ let mapleader=" "
 "   Clear search
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <leader><space> za
+"   Pandoc
+nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
+nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
 " }}}
 " Back up stuff {{{
 if has("vms")
