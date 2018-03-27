@@ -177,63 +177,9 @@ if executable("fzf")
 endif
 " }}}
 " Commands {{{
-" Ripgrep everything
-command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only php files
-command! -bang -nargs=* Rgphp
-            \ call fzf#vim#grep(
-            \   'rg -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rghtmlcss
-            \ call fzf#vim#grep(
-            \   'rg -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rgxml
-            \ call fzf#vim#grep(
-            \   'rg -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-command! -bang -nargs=* Rgu
-            \ call fzf#vim#grep(
-            \   'rg -u --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only php files
-command! -bang -nargs=* Rgphpu
-            \ call fzf#vim#grep(
-            \   'rg -u -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rghtmlcssu
-            \ call fzf#vim#grep(
-            \   'rg -u -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rgxmlu
-            \ call fzf#vim#grep(
-            \   'rg -u -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-
-nnoremap <C-p>a :Rg
+if filereadable(expand("\~/.vim/commands.vim"))
+    source \~/.vim/commands.vim
+endif
 " }}}
 " Mappings {{{
 "   Disable normal space functionality
@@ -243,6 +189,17 @@ let mapleader=" "
 "   Clear search
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <leader><space> za
+"   Pandoc
+nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
+nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
+"   Markdown notes
+nnoremap <F12> :NotesToggle<cr>
+"   Ripgrep
+nnoremap <leader>ra :Rg<cr>
+nnoremap <leader>c :Ripgrep -tcss<cr>
+nnoremap <leader>p :Ripgrep -tphp<cr>
+nnoremap <leader>x :Ripgrep -txml<cr>
+
 " }}}
 " Back up stuff {{{
 if has("vms")
@@ -258,41 +215,9 @@ else
 endif
 " }}}
 " Functions {{{
-"
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'svn\|commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    else
-        call cursor(1,1)
-    endif
-endfunction
-
-" Toggle a markdown notes file in a fixed window on the right with f12
-nnoremap <F12> :NotesToggle<cr>
-command! -nargs=0 NotesToggle call <sid>toggleNotes()
-function! s:toggleNotes() abort
-    let winnr = bufwinnr("notes.md")
-    if winnr > 0
-        exec winnr . "wincmd c"
-        return
-    endif
-    botright 100vs notes.md
-    setl wfw
-    setl nonu
-    " hack to make nerdtree et al not split the window
-    setl previewwindow
-    " for some reason this doesnt get run automatically and the cursor 
-    " position doesn't get set
-    doautocmd bufreadpost %
-    " normal zMzO
-endfunction
-
+if filereadable(expand("\~/.vim/functions.vim"))
+    source \~/.vim/functions.vim
+endif
 " }}}
 " OS-specific stuff {{{
 if has ('unix')
