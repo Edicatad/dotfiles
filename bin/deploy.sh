@@ -16,6 +16,7 @@ STOW_PROGRAMS=(
 "mutt"
 "xresources"
 "newsbeuter"
+"i3"
 )
 
 CLI_TOOLS=(
