@@ -177,6 +177,9 @@ if executable("fzf")
 endif
 " }}}
 " Commands {{{
+if filereadable(expand("\~/.vim/commands.vim"))
+    source \~/.vim/commands.vim
+endif
 " }}}
 " Mappings {{{
 "   Disable normal space functionality
@@ -196,6 +199,8 @@ nnoremap <C-p>a :Rg<cr>
 nnoremap <C-p>c :Rg -tcss<cr>
 nnoremap <C-p>p :Rg -tphp<cr>
 nnoremap <C-p>x :Rg -txml<cr>
+nnoremap <C-p>s :execute "Rg" VisualSelection()<cr>
+
 " }}}
 " Back up stuff {{{
 if has("vms")
