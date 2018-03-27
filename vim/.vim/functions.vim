@@ -13,7 +13,6 @@ function! SetCursorPosition()
 endfunction
 
 " Toggle a markdown notes file in a fixed window on the right with f12
-command! -nargs=0 NotesToggle call <sid>toggleNotes()
 function! s:toggleNotes() abort
     let winnr = bufwinnr("notes.md")
     if winnr > 0
