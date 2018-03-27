@@ -1,4 +1,4 @@
-Urxvt*font: xft:DejaVu Sans Mono:size=11
+URxvt.font: xft:DejaVu\ Sans\ Mono:size=8
 
 ! Base16 Flat
 ! Scheme: Chris Kempson (http://chriskempson.com)
