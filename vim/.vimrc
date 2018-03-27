@@ -199,7 +199,7 @@ nnoremap <C-p>a :Rg<cr>
 nnoremap <C-p>c :Rg -tcss<cr>
 nnoremap <C-p>p :Rg -tphp<cr>
 nnoremap <C-p>x :Rg -txml<cr>
-nnoremap <C-p>s :execute "Rg" VisualSelection()<cr>
+vnoremap <leader>s :<C-u>execute "Rg" VisualSelection()<cr>
 
 " }}}
 " Back up stuff {{{
