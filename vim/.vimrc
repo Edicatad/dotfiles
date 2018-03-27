@@ -250,6 +250,8 @@ nnoremap <leader><space> za
 "   Pandoc
 nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
 nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
+"   Markdown notes
+nnoremap <F12> :NotesToggle<cr>
 " }}}
 " Back up stuff {{{
 if has("vms")
