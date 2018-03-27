@@ -195,11 +195,10 @@ nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
 "   Markdown notes
 nnoremap <F12> :NotesToggle<cr>
 "   Ripgrep
-nnoremap <C-p>a :Rg<cr>
-nnoremap <C-p>c :Rg -tcss<cr>
-nnoremap <C-p>p :Rg -tphp<cr>
-nnoremap <C-p>x :Rg -txml<cr>
-vnoremap <leader>s :<C-u>execute "Rg" VisualSelection()<cr>
+nnoremap <leader>ra :Rg<cr>
+nnoremap <leader>c :Ripgrep -tcss<cr>
+nnoremap <leader>p :Ripgrep -tphp<cr>
+nnoremap <leader>x :Ripgrep -txml<cr>
 
 " }}}
 " Back up stuff {{{
