@@ -177,67 +177,6 @@ if executable("fzf")
 endif
 " }}}
 " Commands {{{
-" Globals
-command! -nargs=* RunSilent
-      \ | execute ':silent !'.'<args>'
-      \ | execute ':redraw!'
-" Ripgrep everything
-command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only php files
-command! -bang -nargs=* Rgphp
-            \ call fzf#vim#grep(
-            \   'rg -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rghtmlcss
-            \ call fzf#vim#grep(
-            \   'rg -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rgxml
-            \ call fzf#vim#grep(
-            \   'rg -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-command! -bang -nargs=* Rgu
-            \ call fzf#vim#grep(
-            \   'rg -u --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only php files
-command! -bang -nargs=* Rgphpu
-            \ call fzf#vim#grep(
-            \   'rg -u -tphp --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rghtmlcssu
-            \ call fzf#vim#grep(
-            \   'rg -u -thtml -tcss --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-" Ripgrep only css/html files
-command! -bang -nargs=* Rgxmlu
-            \ call fzf#vim#grep(
-            \   'rg -u -txml --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0)
-
-nnoremap <C-p>a :Rg
 " }}}
 " Mappings {{{
 "   Disable normal space functionality
@@ -252,6 +191,11 @@ nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
 nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
 "   Markdown notes
 nnoremap <F12> :NotesToggle<cr>
+"   Ripgrep
+nnoremap <C-p>a :Rg<cr>
+nnoremap <C-p>c :Rg -tcss<cr>
+nnoremap <C-p>p :Rg -tphp<cr>
+nnoremap <C-p>x :Rg -txml<cr>
 " }}}
 " Back up stuff {{{
 if has("vms")
