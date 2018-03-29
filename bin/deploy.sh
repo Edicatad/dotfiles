@@ -17,6 +17,7 @@ STOW_PROGRAMS=(
 "xresources"
 "newsbeuter"
 "i3"
+"firefox"
 )
 
 CLI_TOOLS=(
