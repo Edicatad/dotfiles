@@ -18,6 +18,7 @@ STOW_PROGRAMS=(
 "newsbeuter"
 "i3"
 "firefox"
+"dunst"
 )
 
 CLI_TOOLS=(
