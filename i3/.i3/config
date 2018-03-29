@@ -176,6 +176,9 @@ bar {
 ##
 for_window [class="^.*"] border pixel 1
 
+#####
+#   Audio controls
+##
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%", exec "notify-send 'Volume +5%' -t 500"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%", exec "notify-send 'Volume -5%' -t 500"
 bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
