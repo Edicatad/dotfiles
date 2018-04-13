@@ -175,7 +175,7 @@ if executable("fzf")
     " [Buffers] Jump to the existing window if possible
     let g:fzf_buffers_jump = 1
     " Source fzf settings file
-    source ~/.vim/mac-specific.vim
+    source ~/.vim/plugins/fzf.vim
 endif
 " }}}
 " Commands {{{
