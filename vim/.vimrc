@@ -72,6 +72,19 @@ augroup CursorIndicatorsInActiveWindowOnly
     autocmd WinLeave * setlocal nocursorcolumn
 augroup END
 " }}}
+" File navigation {{{
+" .vim/plugin/netrw.vim
+" this is set up for a nerdtree style pane on the left side
+" and p shows a preview in a vertical split
+let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\.\=/\=$'
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_preview = 1
+" source: https://www.reddit.com/r/vim/comments/83y4y4/antipatterns_what_not_to_do/dw8ycxi/
+" }}}
 " Status line {{{
 " Base statusline
 hi User1 ctermfg=8 ctermbg=18
@@ -152,12 +165,6 @@ set foldmethod=indent   " fold based on indentation by default
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
 set scrolloff=15    " keep 15 lines visible above and below the cursor at all times
 " }}}
-" Nerdtree {{{
-" autocmd vimenter * NERDTree     " start NERDTree when vim starts
-" autocmd vimenter * :wincmd l    " start in the file window rather than in NERDTree
-" close NERDTree if it's the only screen left in vim
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" }}}
 " Ripgrep {{{
 if executable("rg")
     set grepprg=rg\ --vimgrep
@@ -193,6 +200,7 @@ nnoremap <leader>ra :Rg<cr>
 nnoremap <leader>c :Ripgrep -tcss<cr>
 nnoremap <leader>p :Ripgrep -tphp<cr>
 nnoremap <leader>x :Ripgrep -txml<cr>
+nnoremap <leader>ff :Files<cr>
 
 " }}}
 " Back up stuff {{{
