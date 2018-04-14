@@ -19,6 +19,7 @@ STOW_PROGRAMS=(
 "i3"
 "firefox"
 "dunst"
+"rofi"
 )
 
 CLI_TOOLS=(
