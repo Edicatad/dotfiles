@@ -2,10 +2,8 @@
 # Clones git repos or otherwise fetches vim plugins
 
 VIM_PLUGINS=(
-"https://github.com/scrooloose/nerdtree" 
 "https://github.com/junegunn/fzf.vim"
 "https://github.com/chriskempson/base16-vim"
-"https://github.com/tpope/vim-surround"
 "https://github.com/tpope/vim-fugitive"
 )
 
