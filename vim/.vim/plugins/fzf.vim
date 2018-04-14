@@ -6,3 +6,6 @@ set rtp+=/usr/local/opt/fzf
 let g:fzf_layout = {'down': '30%'}
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+" [Mappings] Shorter search
+nnoremap <leader>ff :Files
+nnoremap <leader>fb :Buffer
