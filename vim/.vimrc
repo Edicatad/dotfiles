@@ -200,7 +200,12 @@ nnoremap <leader>ra :Rg<cr>
 nnoremap <leader>c :Ripgrep -tcss<cr>
 nnoremap <leader>p :Ripgrep -tphp<cr>
 nnoremap <leader>x :Ripgrep -txml<cr>
-nnoremap <leader>ff :Files<cr>
+   
+"   FZF
+if executable("fzf")
+    nnoremap <leader>ff :Files<cr>
+    nnoremap <leader>fb :Buffer<cr>
+endif
 
 " }}}
 " Back up stuff {{{
