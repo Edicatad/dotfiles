@@ -253,6 +253,11 @@ bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%", ex
 bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 #####
+#   Notifications
+##
+
+
+#####
 #   Autostart
 ##
 exec_always --no-startup-id "feh --randomize --bg-fill /home/edicatad/Pictures/wallpaper/desktop/*"
