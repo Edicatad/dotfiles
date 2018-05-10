@@ -260,4 +260,5 @@ bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 #####
 #   Autostart
 ##
+exec --no-startup-id "pulseaudio --start --log-target=syslog"
 exec_always --no-startup-id "feh --randomize --bg-fill /home/edicatad/Pictures/wallpaper/desktop/*"
