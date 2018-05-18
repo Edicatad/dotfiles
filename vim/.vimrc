@@ -24,10 +24,21 @@ let g:currentmode={
     \}
 
 " }}}
-" Misc {{{
-set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
-set modelines=1                 " checks the last line of a file for mode changes
+" Plugins & external programs{{{
 execute pathogen#infect()
+
+" Ripgrep {{{
+if executable("rg")
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+" }}}
+" Fzf {{{
+if executable("fzf")
+    " Source fzf settings file
+    source ~/.vim/plugins/fzf.vim
+endif
+" }}}
 " }}}
 " Color scheme {{{
 syntax enable           " enable syntax processing
@@ -49,6 +60,8 @@ set copyindent      " copy indentation from previous line
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " }}}
 " UI config {{{
+set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
+set modelines=1                 " checks the last line of a file for mode changes
 set number          " line numbers
 set relativenumber  " Show relative numbers for lines
 set showmode        " Show the current mode
@@ -164,48 +177,10 @@ set foldmethod=indent   " fold based on indentation by default
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
 set scrolloff=15    " keep 15 lines visible above and below the cursor at all times
 " }}}
-" Ripgrep {{{
-if executable("rg")
-    set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+" Functional module {{{
+if filereadable(expand("\~/.vim/functional.vim"))
+    source \~/.vim/functional.vim
 endif
-" }}}
-" Fzf {{{
-if executable("fzf")
-    " Source fzf settings file
-    source ~/.vim/plugins/fzf.vim
-endif
-" }}}
-" Commands {{{
-if filereadable(expand("\~/.vim/commands.vim"))
-    source \~/.vim/commands.vim
-endif
-" }}}
-" Mappings {{{
-"   Disable normal space functionality
-nnoremap <SPACE> <Nop>
-"   Use it as a leader for keybinds
-let mapleader=" "
-"   Clear search
-nnoremap <silent> <leader>/ :nohlsearch<CR>
-nnoremap <leader><space> za
-"   Pandoc
-nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
-nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
-"   Markdown notes
-nnoremap <F12> :NotesToggle<cr>
-"   Ripgrep
-nnoremap <leader>ra :Rg<cr>
-nnoremap <leader>c :Ripgrep -tcss<cr>
-nnoremap <leader>p :Ripgrep -tphp<cr>
-nnoremap <leader>x :Ripgrep -txml<cr>
-   
-"   FZF
-if executable("fzf")
-    nnoremap <leader>ff :Files<cr>
-    nnoremap <leader>fb :Buffer<cr>
-endif
-
 " }}}
 " Back up stuff {{{
 if has("vms")
@@ -218,11 +193,6 @@ else
         set undofile    " keep an undo file (undo changes after closing)
         set undodir=/tmp,.
     endif
-endif
-" }}}
-" Functions {{{
-if filereadable(expand("\~/.vim/functions.vim"))
-    source \~/.vim/functions.vim
 endif
 " }}}
 " OS-specific stuff {{{

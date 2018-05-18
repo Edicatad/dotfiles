@@ -1,3 +1,9 @@
+"   Functional module for vimrc
+" Idea behind this file is that because I can't have my mappings and commands 
+" all in separate files I'm just gonna put all the functional stuff in a 
+" separate file for clarity.
+
+" Functions {{{
 "jump to last cursor position when opening a file
 "dont do it when writing a commit log entry
 autocmd BufReadPost * call SetCursorPosition()
@@ -52,3 +58,53 @@ function! VisualSelection()
     let lines[0] = lines[0][column_start - 1:]
     return join(lines, "\n")
 endfunction
+" }}}
+
+" Commands {{{
+" Globals
+command! -nargs=* RunSilent
+      \ | execute ':silent !'.'<args>'
+      \ | execute ':redraw!'
+
+" Ripgrep everything
+command! -bang -nargs=* Ripgrep
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --ignore-case '.<q-args>, 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+
+command! -bang -nargs=* Rg
+            \ execute "Ripgrep"<bang> . " " . shellescape(<q-args>)
+
+" Toggle markdown notes
+command! -nargs=0 NotesToggle call <sid>toggleNotes()
+" }}}
+
+" Mappings {{{
+"   Disable normal space functionality
+nnoremap <SPACE> <Nop>
+"   Use it as a leader for keybinds
+let mapleader=" "
+"   Clear search
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <leader><space> za
+"   Pandoc
+nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
+nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
+"   Markdown notes
+nnoremap <F12> :NotesToggle<cr>
+"   Ripgrep
+nnoremap <leader>ra :Rg<cr>
+nnoremap <leader>c :Ripgrep -tcss<cr>
+nnoremap <leader>p :Ripgrep -tphp<cr>
+nnoremap <leader>x :Ripgrep -txml<cr>
+   
+"   FZF
+if executable("fzf")
+    nnoremap <leader>ff :Files<cr>
+    nnoremap <leader>fb :Buffer<cr>
+endif
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
