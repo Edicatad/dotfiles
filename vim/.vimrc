@@ -39,6 +39,18 @@ if executable("fzf")
     source ~/.vim/plugins/fzf.vim
 endif
 " }}}
+" Netrw {{{
+" .vim/plugin/netrw.vim
+" this is set up for a nerdtree style pane on the left side
+" and p shows a preview in a vertical split
+let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\.\=/\=$'
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_preview = 1
+" source: https://www.reddit.com/r/vim/comments/83y4y4/antipatterns_what_not_to_do/dw8ycxi/
+" }}}
 " }}}
 " Color scheme {{{
 syntax enable           " enable syntax processing
@@ -84,18 +96,6 @@ augroup CursorIndicatorsInActiveWindowOnly
     autocmd WinLeave * setlocal nocursorline
     autocmd WinLeave * setlocal nocursorcolumn
 augroup END
-" }}}
-" File navigation {{{
-" .vim/plugin/netrw.vim
-" this is set up for a nerdtree style pane on the left side
-" and p shows a preview in a vertical split
-let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\.\=/\=$'
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-let g:netrw_preview = 1
-" source: https://www.reddit.com/r/vim/comments/83y4y4/antipatterns_what_not_to_do/dw8ycxi/
 " }}}
 " Status line {{{
 " Base statusline
