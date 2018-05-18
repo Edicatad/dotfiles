@@ -3,25 +3,25 @@
 
 " Variables and arrays {{{
 let g:currentmode={
-    \ 'n'  : 'Normal',
-    \ 'no' : 'N·Operator Pending',
-    \ 'v'  : 'Visual',
-    \ 'V'  : 'V·Line',
-    \ ''  : 'V·Block',
-    \ 's'  : 'Select',
-    \ 'S'  : 'S·Line',
-    \ ''  : 'S·Block',
-    \ 'i'  : 'Insert',
-    \ 'R'  : 'Replace',
-    \ 'Rv' : 'V·Replace',
-    \ 'c'  : 'Command',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : 'Shell',
-    \}
+            \ 'n'  : 'Normal',
+            \ 'no' : 'N·Operator Pending',
+            \ 'v'  : 'Visual',
+            \ 'V'  : 'V·Line',
+            \ ''  : 'V·Block',
+            \ 's'  : 'Select',
+            \ 'S'  : 'S·Line',
+            \ ''  : 'S·Block',
+            \ 'i'  : 'Insert',
+            \ 'R'  : 'Replace',
+            \ 'Rv' : 'V·Replace',
+            \ 'c'  : 'Command',
+            \ 'cv' : 'Vim Ex',
+            \ 'ce' : 'Ex',
+            \ 'r'  : 'Prompt',
+            \ 'rm' : 'More',
+            \ 'r?' : 'Confirm',
+            \ '!'  : 'Shell',
+            \}
 
 " }}}
 " Plugins & external programs{{{
@@ -59,6 +59,7 @@ if filereadable(expand("~/.vimrc_background"))
     source ~/.vimrc_background
 endif
 highlight VertSplit ctermfg=bg ctermbg=18
+highlight ColorColumn ctermbg=bg
 " }}}
 " Indentation {{{
 " General indentation rules
@@ -95,6 +96,11 @@ augroup CursorIndicatorsInActiveWindowOnly
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
     autocmd WinLeave * setlocal nocursorline
     autocmd WinLeave * setlocal nocursorcolumn
+augroup END
+augroup ColorcolumnOnlyInInsertMode
+    autocmd!
+    autocmd InsertEnter * setlocal colorcolumn=81
+    autocmd InsertLeave * setlocal colorcolumn=0
 augroup END
 " }}}
 " Status line {{{
