@@ -18,6 +18,7 @@ STOW_PROGRAMS=(
 "firefox"
 "dunst"
 "rofi"
+"taskwarrior"
 )
 
 CLI_TOOLS=(
