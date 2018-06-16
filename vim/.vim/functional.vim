@@ -94,11 +94,14 @@ nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.html %<CR>
 nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.html<CR>
 "   Markdown notes
 nnoremap <F12> :NotesToggle<cr>
+"   Git Fugitive
+nnoremap <Leader>gs :Gstatus<cr>
+nnoremap <Leader>gd :Gdiff<cr>
+nnoremap <Leader>gw :Gwrite<cr>
+nnoremap <Leader>gc :Gcommit<cr>
+nnoremap <Leader>gp :Git push origin <cr>
 "   Ripgrep
 nnoremap <leader>ra :Rg<cr>
-nnoremap <leader>c :Ripgrep -tcss<cr>
-nnoremap <leader>p :Ripgrep -tphp<cr>
-nnoremap <leader>x :Ripgrep -txml<cr>
    
 "   FZF
 if executable("fzf")
