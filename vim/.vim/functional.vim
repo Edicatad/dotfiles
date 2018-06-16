@@ -99,7 +99,7 @@ nnoremap <Leader>gs :Gstatus<cr>
 nnoremap <Leader>gd :Gdiff<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gc :Gcommit<cr>
-nnoremap <Leader>gp :Git push origin <cr>
+nnoremap <Leader>gp :Git push origin 
 "   Ripgrep
 nnoremap <leader>ra :Rg<cr>
    
