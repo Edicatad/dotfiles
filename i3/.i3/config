@@ -110,16 +110,16 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Define workspaces
-set $workspace1 1 web
-set $workspace2 2 >_
-set $workspace3 3 mail
-set $workspace4 4 chat
-set $workspace5 5 game
-set $workspace6 6 pass
-set $workspace7 7
-set $workspace8 8
-set $workspace9 9
-set $workspace0 0
+set $workspace1 "1 web"
+set $workspace2 "2 >_"
+set $workspace3 "3 mail"
+set $workspace4 "4 chat"
+set $workspace5 "5 game"
+set $workspace6 "6 pass"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace0 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -232,6 +232,26 @@ client.placeholder      $base00 $base00 $base05 $base00 $base00
 client.background $base07
 
 #####
+#   Output variables
+##
+set $monitor_one DisplayPort-1
+set $monitor_two DVI-0
+
+#####
+#   Workspace output assignments
+##
+# Monitor one
+workspace $workspace1 output $monitor_one
+workspace $workspace3 output $monitor_one
+workspace $workspace5 output $monitor_one
+workspace $workspace7 output $monitor_one
+# Monitor two
+workspace $workspace2 output $monitor_two
+workspace $workspace4 output $monitor_two
+workspace $workspace6 output $monitor_two
+workspace $workspace8 output $monitor_two
+
+#####
 #   Window styling
 ##
 for_window [class="^.*"] border pixel 1
@@ -261,4 +281,5 @@ bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 #   Autostart
 ##
 exec --no-startup-id "pulseaudio --start --log-target=syslog"
+exec --no-startup-id "/home/edicatad/.screenlayout/default.sh"
 exec_always --no-startup-id "feh --randomize --bg-fill /home/edicatad/Pictures/wallpaper/desktop/*"
