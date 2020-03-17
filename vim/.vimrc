@@ -27,12 +27,6 @@ let g:currentmode={
 " Plugins & external programs{{{
 execute pathogen#infect()
 
-" Ripgrep {{{
-if executable("rg")
-    set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-" }}}
 " Fzf {{{
 if executable("fzf")
     " Source fzf settings file
@@ -50,6 +44,104 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 let g:netrw_preview = 1
 " source: https://www.reddit.com/r/vim/comments/83y4y4/antipatterns_what_not_to_do/dw8ycxi/
+" }}}
+" Ripgrep {{{
+if executable("rg")
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+" }}}
+" Dispatch{{{
+autocmd BufReadPost *
+      \ if getline(1) =~# '^#!' |
+      \   let b:dispatch =
+      \       matchstr(getline(1), '#!\%(/usr/bin/env \+\)\=\zs.*') . ' %' |
+      \   let b:start = '-wait=always ' . b:dispatch |
+      \ endif
+autocmd FileType scss,javascript let b:dispatch = 'npm run dev'
+" }}}
+" Gutentags{{{
+" Where does it generate tags
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_cache_dir = expand('~/.vim/tags')
+" When does it generate new files
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+" Exclude certain filetypes from tag generation
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'build',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache',
+      \ 'compiled',
+      \ 'docs',
+      \ 'example',
+      \ 'bundle',
+      \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]
+" }}}
+" neomake {{{
+let g:neomake_php_phpcs_exe = './vendor/bin/phpcs'
+let g:neomake_php_phpcs_args_standard = 'ruleset.xml'
+let g:neomake_place_signs = 1
+let g:neomake_error_sign = {
+            \ 'text': 'X',
+            \ 'texthl': 'NeomakeErrorSign',
+            \ }
+let g:neomake_warning_sign = {
+            \   'text': '!',
+            \   'texthl': 'NeomakeWarningSign',
+            \ }
+let g:neomake_message_sign = {
+            \   'text': '>',
+            \   'texthl': 'NeomakeMessageSign',
+            \ }
+let g:neomake_info_sign = {
+            \ 'text': 'i',
+            \ 'texthl': 'NeomakeInfoSign'
+            \ }
+" Automatically neomake stuff on writing or a second after normal mode changes
+" stop
+call neomake#configure#automake('nw', 1000)
 " }}}
 " }}}
 " Color scheme {{{
