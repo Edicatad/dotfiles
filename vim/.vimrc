@@ -152,6 +152,10 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 highlight VertSplit ctermfg=bg ctermbg=18
 highlight ColorColumn ctermbg=bg
+" Better highlighting for bad spelling and (more importantly) neomake
+highlight SpellBad ctermfg=bg ctermbg=17
+" Filetype specific settings for syntax highlighting and shit
+autocmd BufRead,BufNewFile *.vue setfiletype html
 " }}}
 " Indentation {{{
 " General indentation rules
