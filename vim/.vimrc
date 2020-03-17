@@ -180,16 +180,13 @@ set number          " line numbers
 set relativenumber  " Show relative numbers for lines
 set showmode        " Show the current mode
 set showcmd         " shows the typed command bottom right
-set cursorline      " highlight current line
-set cursorcolumn    " highlight current column
-filetype indent on  " opens indentation file based on detected filetype (.c, .py, etc)
 set wildmenu        " visual autocomplete for commands
 set wildmode=list:longest,list:full " more efficient autocomplete!
 set lazyredraw      " only redraw when necessary
 set showmatch       " highlight matching for brackets [{()}]
 set mouse=a         " Allow mouse interaction in all modes
-set showbreak=↪\ 
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set showbreak=^\ 
+set listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 set fillchars=vert:\ 
 augroup CursorIndicatorsInActiveWindowOnly
     autocmd!
@@ -203,6 +200,10 @@ augroup ColorcolumnOnlyInInsertMode
     autocmd InsertEnter * setlocal colorcolumn=81
     autocmd InsertLeave * setlocal colorcolumn=0
 augroup END
+" Switch diff algorithm for better readability
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience
+endif
 " }}}
 " Status line {{{
 " Base statusline
@@ -278,7 +279,7 @@ set smartcase       " respect case if you type it
 set foldenable          " enable this
 set foldlevelstart=10   " open 10 levels of folds
 set foldnestmax=10      " allow at most 10 nested folds
-set foldmethod=indent   " fold based on indentation by default
+set foldmethod=syntax   " fold based on syntax by default
 " }}}
 " Movement {{{
 set scrolljump=5    " jump 5 lines when the cursor leaves the screen
