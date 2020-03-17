@@ -166,7 +166,12 @@ set expandtab       " tabs are inserted as spaces for things like bash
 set smarttab        " tab key brings you to the next tabstop multiple rather than hard-inserting four spaces
 set copyindent      " copy indentation from previous line
 " Filetype-specific indentation rules
+filetype indent on  " opens indentation file based on detected filetype (.c, .py, etc)
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType make setlocal noexpandtab
 " }}}
 " UI config {{{
 set backspace=indent,eol,start  " allows backspace to remove indentation and stuff
