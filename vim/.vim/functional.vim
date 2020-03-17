@@ -100,16 +100,22 @@ nnoremap <Leader>gs :Gstatus<cr>
 nnoremap <Leader>gd :Gdiff<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gc :Gcommit<cr>
-nnoremap <Leader>gp :Git push origin 
+nnoremap <Leader>gp :Dispatch git push origin <c-r>=fugitive#head()<cr>
+"   Location window
+nnoremap <Leader>lo :lwindow<cr>
+nnoremap <Leader>lc :lclose<cr>
 "   Ripgrep
 if executable('Rg')
     nnoremap <leader>ra :Rg<cr>
+    nnoremap <leader>rs :Rg <C-r><C-w><cr>
+    vnoremap <leader>rs :<bs><bs><bs><bs><bs>Rg <c-r>=VisualSelection()<cr><cr>
 endif
    
 "   FZF
 if executable("fzf")
     nnoremap <leader>ff :Files<cr>
     nnoremap <leader>fb :Buffer<cr>
+    nnoremap <leader>ft :Tags <C-r><C-w><cr>
 endif
 " }}}
 
