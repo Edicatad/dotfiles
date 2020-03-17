@@ -5,19 +5,19 @@ VIM_PLUGINS=(
 "https://github.com/junegunn/fzf.vim"
 "https://github.com/chriskempson/base16-vim"
 "https://github.com/tpope/vim-fugitive"
+"https://github.com/tpope/vim-eunuch"
+"https://github.com/tpope/vim-dispatch"
+"https://github.com/ludovicchabant/vim-gutentags"
+"https://github.com/neomake/neomake"
 )
 
 STOW_PROGRAMS=(
 "vim"
 "bash" 
 "tmux"
-"mutt"
 "xresources"
-"newsbeuter"
 "i3"
 "firefox"
-"dunst"
-"rofi"
 "taskwarrior"
 )
 
