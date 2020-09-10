@@ -105,7 +105,7 @@ nnoremap <Leader>gp :Dispatch git push origin <c-r>=fugitive#head()<cr>
 nnoremap <Leader>lo :lwindow<cr>
 nnoremap <Leader>lc :lclose<cr>
 "   Ripgrep
-if executable('Rg')
+if executable('rg')
     nnoremap <leader>ra :Rg<cr>
     nnoremap <leader>rs :Rg <C-r><C-w><cr>
     vnoremap <leader>rs :<bs><bs><bs><bs><bs>Rg <c-r>=VisualSelection()<cr><cr>
